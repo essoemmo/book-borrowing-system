@@ -8,13 +8,13 @@ use Illuminate\Support\Carbon;
 
 class BookFactory extends Factory
 {
-    protected $model = Book::class;
-
     public function definition(): array
     {
         return [
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'title' => $this->faker->sentence(),
+            'author' => $this->faker->name(),
+            'isbn' => $this->faker->isbn13(),
+            'description' => $this->faker->paragraph(),
         ];
     }
 }
