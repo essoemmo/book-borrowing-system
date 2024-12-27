@@ -15,8 +15,13 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function showLoginForm(
-    ): View|\Illuminate\Foundation\Application|Factory|Application {
+
+    protected function guard(): Guard|StatefulGuard
+    {
+        return Auth::guard('admin');
+    }
+    public function showLoginForm(): View|\Illuminate\Foundation\Application|Factory|Application
+    {
         return view('admin.login');
     }
 
@@ -26,17 +31,12 @@ class LoginController extends Controller
 
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('admin/dashboard');
+            return redirect()->intended('admin/home');
         }
 
         session()->flash('error', __('admin.notbase'));
 
         return back();
-    }
-
-    protected function guard(): Guard|StatefulGuard
-    {
-        return Auth::guard('admin');
     }
 
     public function logout(Request $request)
