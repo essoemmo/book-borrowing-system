@@ -1,18 +1,14 @@
+@include('admin.layout.header')
 
-    @include('admin.layout.header')
+@include('admin.layout.sidenav')
 
-    @include('admin.layout.sidenav')
+@include('admin.layout.mainnav')
+<section>
 
-    @include('admin.layout.mainnav')
+    @yield('content')
 
-    @searcableScripts
+</section>
 
-            <section>
+@include('admin.layout.footer')
 
-                @yield('content')
-
-            </section>
-
-    @include('admin.layout.footer')
-
-    @include('admin.layout.session')
+@include('admin.layout.session')

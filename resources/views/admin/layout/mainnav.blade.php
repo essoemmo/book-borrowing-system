@@ -79,14 +79,14 @@
                     <!--/ Notification -->
                     <!-- Language -->
                     <ul class="nav navbar-nav bookmark-icons me-4 me-xl-3">
-                        @if(app()->isLocale('ar'))
-                            <a href="{{route('admin.lang','en')}}" class="nav-link" title="English"><span
-                                    class="mdi mdi-web mdi-36px" style="color: #666cff;"></span></a>
+{{--                        @if(app()->isLocale('ar'))--}}
+{{--                            <a href="{{route('admin.lang','en')}}" class="nav-link" title="English"><span--}}
+{{--                                    class="mdi mdi-web mdi-36px" style="color: #666cff;"></span></a>--}}
 
-                        @else
-                            <a href="{{route('admin.lang','ar')}}" class="nav-link" title="Arabic"><span
-                                    class="mdi mdi-web mdi-36px" style="color: #666cff;"></span></a>
-                        @endif
+{{--                        @else--}}
+{{--                            <a href="{{route('admin.lang','ar')}}" class="nav-link" title="Arabic"><span--}}
+{{--                                    class="mdi mdi-web mdi-36px" style="color: #666cff;"></span></a>--}}
+{{--                        @endif--}}
                     </ul>
                     <!-- User -->
                     <ul class="nav navbar-nav bookmark-icons me-5 me-xl-4">

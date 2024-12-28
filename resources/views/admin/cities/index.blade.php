@@ -102,5 +102,5 @@
 
 @push('js')
     {{ $dataTable->scripts() }}
-    <script src="{{ asset('adminStyle/customJs/cities-actions.js')}}"></script>
+    <script src="{{ asset('adminStyle/customJs/loans-actions.js')}}"></script>
 @endpush
