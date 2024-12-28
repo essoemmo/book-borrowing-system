@@ -11,8 +11,6 @@ use Laratrust\Traits\HasRolesAndPermissions;
 class Admin extends Authenticatable implements MustVerifyEmail
 {
     use HasRolesAndPermissions;
-    use Notifiable;
-    use SoftDeletes;
 
     protected $table = 'admins';
 

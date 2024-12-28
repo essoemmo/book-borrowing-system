@@ -6,11 +6,11 @@
                 <a href="#" class="app-brand-link">
               <span class="app-brand-logo demo">
                  <span style="color: var(--bs-primary)">
-                     @if(app()->getLocale() == 'ar')
-                         <img src="{{ asset('images/logo_ar.png') }}" alt="" style="width: 50px;">
-                     @else
-                         <img src="{{ asset('images/logo.png') }}" alt="" style="width: 50px;">
-                     @endif
+{{--                     @if(app()->getLocale() == 'ar')--}}
+{{--                         <img src="{{ asset('images/logo_ar.png') }}" alt="" style="width: 50px;">--}}
+{{--                     @else--}}
+{{--                         <img src="{{ asset('images/logo.png') }}" alt="" style="width: 50px;">--}}
+{{--                     @endif--}}
                   </span>
               </span>
                     <span class="app-brand-text demo menu-text fw-bold ms-2">@lang('admin.Wnes')</span>
@@ -58,15 +58,6 @@
                     </li>
                 @endif
 
-                @if(Auth::guard('admin')->user()->hasPermission('daycares-read'))
-                    <li class="menu-item {{ URL::route('admin.daycares.index') === URL::current() ? 'active' : '' }}">
-                        <a href="{{route('admin.daycares.index')}}" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-account-clock"></i>
-                            <div data-i18n="@lang('admin.daycares')">@lang('admin.daycares')</div>
-                        </a>
-                    </li>
-                @endif
-
                 @if(Auth::guard('admin')->user()->hasPermission('users-read'))
                     <li class="menu-item {{ URL::route('admin.users.index') === URL::current() ? 'active' : '' }}">
                         <a href="{{route('admin.users.index')}}" class="menu-link">
@@ -76,69 +67,13 @@
                     </li>
                 @endif
 
-                @if(Auth::guard('admin')->user()->hasPermission('stages-read'))
-                    <li class="menu-item {{ URL::route('admin.stage.index') === URL::current() ? 'active' : '' }}">
-                        <a href="{{route('admin.stage.index')}}" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-chart-bar-stacked"></i>
-                            <div data-i18n="@lang('admin.stages')">@lang('admin.stages')</div>
-                        </a>
-                    </li>
-                @endif
-
-                @if(Auth::guard('admin')->user()->hasPermission('features-read'))
-                    <li class="menu-item {{ URL::route('admin.feature.index') === URL::current() ? 'active' : '' }}">
-                        <a href="{{route('admin.feature.index')}}" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-ferris-wheel"></i>
-                            <div data-i18n="@lang('admin.features')">@lang('admin.features')</div>
-                        </a>
-                    </li>
-                @endif
-
-                {{--                @if(Auth::guard('admin')->user()->hasPermission('sections-read'))--}}
-
-                <li class="menu-item {{ URL::route('admin.sections.index') === URL::current() ? 'active' : '' }}">
-                    <a href="{{route('admin.sections.index')}}" class="menu-link">
-                        <i class="menu-icon tf-icons mdi mdi-network-pos"></i>
-                        <div data-i18n="@lang('admin.jobs_sections')">@lang('admin.jobs_sections')</div>
-                    </a>
-                </li>
-                {{--                @endif--}}
-
-                @if(Auth::guard('admin')->user()->hasPermission('cities-read'))
-                    <li class="menu-item {{ URL::route('admin.cities.index') === URL::current() ? 'active' : '' }}">
-                        <a href="{{route('admin.cities.index')}}" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-city mdi-36px"></i>
-                            <div data-i18n="@lang('admin.cities')">@lang('admin.cities')</div>
-                        </a>
-                    </li>
-                @endif
-                @if(Auth::guard('admin')->user()->hasPermission('states-read'))
-                    <li class="menu-item {{ URL::route('admin.states.index') === URL::current() ? 'active' : '' }}">
-                        <a href="{{route('admin.states.index')}}" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-home-city mdi-36px"></i>
-                            <div data-i18n="@lang('admin.states')">@lang('admin.states')</div>
-                        </a>
-                    </li>
-                @endif
-
-                @if(Auth::guard('admin')->user()->hasPermission('messages-read'))
-                    <li class="menu-item {{ URL::route('admin.messages.index') === URL::current() ? 'active' : '' }}">
-                        <a href="{{route('admin.messages.index')}}" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-message-bulleted mdi-36px"></i>
-                            <div data-i18n="@lang('admin.messages')">@lang('admin.messages')</div>
-                        </a>
-                    </li>
-                @endif
-
-                @if(Auth::guard('admin')->user()->hasPermission('settings-read'))
-                    <li class="menu-item {{ URL::route('admin.setting.index') === URL::current() ? 'active' : '' }}">
-                        <a href="{{route('admin.setting.index')}}" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-cog-outline fs-4 mdi-36px"></i>
-                            <div data-i18n="@lang('admin.settings')">@lang('admin.settings')</div>
-                        </a>
-                    </li>
-                @endif
-
-
+{{--                @if(Auth::guard('admin')->user()->hasPermission('cities-read'))--}}
+{{--                    <li class="menu-item {{ URL::route('admin.cities.index') === URL::current() ? 'active' : '' }}">--}}
+{{--                        <a href="{{route('admin.cities.index')}}" class="menu-link">--}}
+{{--                            <i class="menu-icon tf-icons mdi mdi-city mdi-36px"></i>--}}
+{{--                            <div data-i18n="@lang('admin.cities')">@lang('admin.cities')</div>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
             </ul>
         </aside>
