@@ -18,7 +18,7 @@
                             </div>
                             <div class="ms-3">
                                 <div class="d-flex align-items-center">
-                                    <h5 class="mb-0">{{rolesCount()['roles_count']}}</h5>
+                                    <h5 class="mb-0"></h5>
 
                                 </div>
                                 <small class="text-muted">@lang('admin.numbroles')</small>
@@ -93,12 +93,6 @@
                                         <th>@lang('admin.permissions')</th>
                                     </tr>
                                     @foreach($models as $index=>$model)
-                                        @if($model == 'settings')
-                                                <?php $actions = ['read', 'update']; ?>
-                                        @endif
-                                        @if($model == 'contactus')
-                                                <?php $actions = ['read', 'delete']; ?>
-                                        @endif
                                         <tr>
                                             <td class="text-nowrap fw-semibold"
                                                 style="width:5%">@lang('admin.'.$model)</td>

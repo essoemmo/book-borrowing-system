@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DataTables\Admin\AdminDataTable;
-use App\Http\Requests\Admin\StoreAdmin;
-use App\Http\Requests\Admin\UpdateAdmin;
-use App\Models\Setting\Role;
-use App\Models\User\Admin;
+use App\DataTables\AdminDataTable;
+use App\Http\Requests\StoreAdmin;
+use App\Http\Requests\UpdateAdmin;
+use App\Models\Role;
+use App\Models\Admin;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -22,7 +22,7 @@ class AdminsController extends BaseAdminController
 
     public function index(AdminDataTable $admins)
     {
-        $roles = Role::whereRoleNot(['super_admin'])->get();
+        $roles = Role::WithoutRoleSuperAdmin(['super_admin'])->get();
 
         return $admins->render('admin.admins.index', compact('roles'));
     }

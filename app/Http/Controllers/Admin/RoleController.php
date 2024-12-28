@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DataTables\Admin\RoleDataTable;
-use App\Http\Requests\Admin\StoreRole;
-use App\Http\Requests\Admin\UpdateRole;
-use App\Models\Setting\Role;
+use App\DataTables\RoleDataTable;
+use App\Http\Requests\StoreRole;
+use App\Http\Requests\UpdateRole;
+use App\Models\Role;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -20,19 +20,7 @@ class RoleController extends BaseAdminController
 
     public function index(RoleDataTable $roles)
     {
-        $models = [
-            'admins',
-            'roles',
-            'users',
-            'daycares',
-            'cities',
-            'states',
-            'features',
-            'stages',
-            'messages',
-            'settings',
-            'contactus',
-        ];
+        $models = ['admins', 'roles', 'users', 'books', 'loans'];
         $actions = ['read', 'create', 'update', 'delete'];
 
         return $roles->render('admin.roles.index', compact('models', 'actions'));
@@ -46,36 +34,27 @@ class RoleController extends BaseAdminController
         return response()->json(['status' => 'success']);
     }
 
-    public function edit(Role $role): View|\Illuminate\Foundation\Application|Factory|Application
+    public function edit($id): View|\Illuminate\Foundation\Application|Factory|Application
     {
-        $models = [
-            'admins',
-            'roles',
-            'users',
-            'daycares',
-            'cities',
-            'states',
-            'features',
-            'stages',
-            'messages',
-            'settings',
-            'contactus',
-        ];
+        $role = Role::findOrFail($id);
+        $models = ['admins', 'roles', 'users', 'books', 'loans'];
         $actions = ['read', 'create', 'update', 'delete'];
 
         return view('admin.roles.edit', compact('role', 'models', 'actions'));
     }
 
-    public function update(UpdateRole $request, Role $role): JsonResponse
+    public function update(UpdateRole $request, $id): JsonResponse
     {
+        $role = Role::findOrFail($id);
         $role->update($request->safe()->except('permissions'));
         $role->syncPermissions($request->permissions);
 
         return response()->json(['status' => 'success']);
     }
 
-    public function destroy(Role $role): JsonResponse
+    public function destroy($id): JsonResponse
     {
+        $role = Role::findOrFail($id);
         $role->delete();
 
         return response()->json(['status' => 'success']);

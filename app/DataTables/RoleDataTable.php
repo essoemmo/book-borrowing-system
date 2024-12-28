@@ -22,8 +22,30 @@ class RoleDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'role.action')
-            ->setRowId('id');
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+
+                if (auth()->guard('admin')->user()->hasPermission('roles-update')) {
+                    $btn = '<a href="'.route('admin.roles.edit', $row->id).'" type="button" class="btn btn-icon btn-primary edit"><span class="tf-icons mdi mdi-circle-edit-outline mdi-24px"></span></a> &nbsp';
+                } else {
+                    $btn = '<button  type="button" class="btn btn-icon btn-primary btn-fab demo disabled"><i data-feather="edit"></i></button>';
+                }
+
+                if (auth()->guard('admin')->user()->hasPermission('roles-delete')) {
+                    $btn = $btn.
+                        '<form class="delete"  action="'.route('admin.roles.destroy', $row->id).'"  method="POST" id="delform"
+                    style="display: inline-block; right: 50px;" >
+                    <input name="_method" type="hidden" value="DELETE">
+                    <input type="hidden" name="_token" id="token" value="'.csrf_token().'">
+                    <button type="submit" class="btn btn-icon btn-danger" title=" '.'Delete'.' "><span class="tf-icons mdi mdi-delete-empty mdi-24px"></span></button>
+                        </form>';
+                } else {
+                    $btn = $btn.'<button class="btn btn-icon btn-danger disabled"><span class="tf-icons mdi mdi-delete-empty mdi-24px"></span></button>';
+                }
+
+                return $btn;
+            })
+            ->rawColumns(['action']);
     }
 
     /**
@@ -31,7 +53,7 @@ class RoleDataTable extends DataTable
      */
     public function query(Role $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->query()->WithoutRoleSuperAdmin(['super_admin'])->with('permissions');
     }
 
     /**
@@ -40,20 +62,12 @@ class RoleDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('role-table')
+                    ->setTableId('admin-main-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
                     ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+                    ->selectStyleSingle();
     }
 
     /**
@@ -62,15 +76,9 @@ class RoleDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('DT_RowIndex')->title('#')->addClass('text-center')->orderable(false)->searchable(false),
+            Column::make('name')->title(__('admin.name'))->addClass('text-center'),
+            Column::computed('action')->title(__('admin.action'))->exportable(false)->printable(false)->addClass('text-center'),
         ];
     }
 

@@ -13,7 +13,7 @@
                     </div>
                     <!-- Add role form -->
                     <form  action="{{ route('admin.roles.update',$role->id)}}" method="POST"
-                          class="row g-3" data-parsley-validate="" data-massage = "{{__('admin.updated')}}" data-url="{{ route('admin.roles.store') }}"id="editForm">
+                          class="row g-3" data-parsley-validate="" data-massage = "{{__('admin.updated')}}" data-url="{{ route('admin.roles.index') }}" id="editForm">
                         @csrf
                         @method('put')
 

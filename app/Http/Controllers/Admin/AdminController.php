@@ -15,10 +15,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:admin')->only('index');
-    }
+
 
     public function index(
     ): View|\Illuminate\Foundation\Application|Factory|Application {

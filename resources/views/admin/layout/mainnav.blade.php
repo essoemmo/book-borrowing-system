@@ -90,7 +90,7 @@
                     </ul>
                     <!-- User -->
                     <ul class="nav navbar-nav bookmark-icons me-5 me-xl-4">
-                        <a class="nav-link dropdown-toggle hide-arrow" title="Profile" href="{{ route('admin.profile.setting') }}">
+                        <a class="nav-link dropdown-toggle hide-arrow" title="Profile" href="">
                             <div class="avatar avatar-online">
                                 <img src="{{ asset('images/admins.png') }}" alt class="w-px-40 h-auto rounded-circle"/>
                             </div>

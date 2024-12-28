@@ -12,7 +12,7 @@ return [
             'roles' => 'c,r,u,d',
             'users' => 'c,r,u,d',
             'books' => 'c,r,u,d',
-            'loans' => 'r,u',
+            'loans' => 'c,r,u,d',
         ],
     ],
 

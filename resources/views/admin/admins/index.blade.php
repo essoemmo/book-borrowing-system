@@ -16,7 +16,7 @@
                             </div>
                             <div class="ms-3">
                                 <div class="d-flex align-items-center">
-                                    <h5 class="mb-0">{{adminsCount()['admins_count']}}</h5>
+                                    <h5 class="mb-0"></h5>
                                 </div>
                                 <small class="text-muted">@lang('admin.alladmins')</small>
                             </div>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="ms-3">
                                 <div class="d-flex align-items-center">
-                                    <h5 class="mb-0">{{adminsCount()['active_admin_count']}}</h5>
+                                    <h5 class="mb-0"></h5>
                                 </div>
                                 <small class="text-muted">@lang('admin.actives')</small>
                             </div>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="ms-3">
                                 <div class="d-flex align-items-center">
-                                    <h5 class="mb-0">{{adminsCount()['inactive_admin_count']}}</h5>
+                                    <h5 class="mb-0"></h5>
                                 </div>
                                 <small class="text-muted">@lang('admin.inactives')</small>
                             </div>
@@ -73,7 +73,7 @@
                             </div>
                             <div class="ms-3">
                                 <div class="d-flex align-items-center">
-                                    <h5 class="mb-0">{{adminsCount()['deleted_admins']}}</h5>
+                                    <h5 class="mb-0"></h5>
                                 </div>
                                 <small class="text-muted">@lang('admin.deleteds')</small>
                             </div>

@@ -15,7 +15,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title pb-xl-2">@lang('admin.congratulation') .. <strong>{{ auth()->user()->name }}</strong>🎉</h4>
                                     <p>@lang('admin.checkaccount')</p>
-                                    <a href="{{ route('admin.profile.setting') }}" class="btn btn-primary">@lang('admin.profile')</a>
+                                    <a href="" class="btn btn-primary">@lang('admin.profile')</a>
                                 </div>
                             </div>
                             <div class="col-md-6 text-center text-md-end order-1 order-md-2">
