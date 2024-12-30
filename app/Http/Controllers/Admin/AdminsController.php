@@ -46,8 +46,9 @@ class AdminsController extends BaseAdminController
         return view('admin.admins.edit', compact('admin', 'roles'));
     }
 
-    public function adminStatus(Request $request, Admin $admin): JsonResponse
+    public function adminStatus(Request $request, $id): JsonResponse
     {
+        $admin = Admin::findOrFail($id);
         $admin->update(['active' => $request->active]);
 
         return response()->json(['status' => 'success', 'data' => $admin]);

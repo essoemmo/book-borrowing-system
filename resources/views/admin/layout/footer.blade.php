@@ -18,7 +18,7 @@
 <script src="{{ asset('adminStyle/assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
 
 <script src="{{ asset('adminStyle/assets/js/main.js') }}"></script>
-<script src="{{ asset('adminStyle/assets/js/tables-datatables-advanced.js') }}"></script>
+<script src="{{ asset('adminStyle/assets/js/tables-datatables-basic.js') }}"></script>
 <script src="{{ asset('adminStyle/assets/js/forms-pickers.js') }}"></script>
 <script src="{{ asset('adminStyle/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 <script src="{{ asset('adminStyle/assets/vendor/libs/swiper/swiper.js') }}"></script>

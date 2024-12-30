@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span
-                class="text-muted fw-light">@lang('admin.home') / </span>@lang('admin.users')</h4>
+                class="text-muted fw-light">@lang('admin.home') / </span>@lang('admin.books')</h4>
 
         <div class="row g-4 mb-4">
             <div class="col-sm-5 col-xl-4">
@@ -20,7 +20,7 @@
                                     <div class="d-flex align-items-center">
                                         <h5 class="mb-0"></h5>
                                     </div>
-                                    <small class="text-muted">@lang('admin.users')</small>
+                                    <small class="text-muted">@lang('admin.books')</small>
                                 </div>
                             </div>
                         </div>
@@ -51,15 +51,15 @@
         <!-- Users List Table -->
         <div class="card">
             <div class="card-header">
-                @if(Auth::guard('admin')->user()->hasPermission('users-create'))
+                @if(Auth::guard('admin')->user()->hasPermission('books-create'))
                     <button style="float: right" data-bs-target="#modal-add" data-bs-toggle="modal"
                             class="btn btn-primary mb-3 text-nowrap add-new-user">
-                        @lang('admin.addusers')
+                        @lang('admin.addbooks')
                     </button>
                 @else
                     <button class="dt-button create-new btn btn-primary waves-effect waves-float waves-light disabled"
                             type="button">
-                        <span style="font-size: 15px;">@lang('admin.addusers')</span>
+                        <span style="font-size: 15px;">@lang('admin.addbooks')</span>
                     </button>
                 @endif
 
@@ -78,10 +78,10 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modalCenterTitle">@lang('admin.addusers')</h4>
+                    <h4 class="modal-title" id="modalCenterTitle">@lang('admin.addbooks')</h4>
                 </div>
-                <form action="{{ route('admin.users.store') }}" method="POST"
-                      class="row g-3" data-parsley-validate="" data-massage = "{{__('admin.added')}}" data-url="{{ route('admin.users.index') }}"  id="addForm">
+                <form action="{{ route('admin.books.store') }}" method="POST"
+                      class="row g-3" data-parsley-validate="" data-massage = "{{__('admin.added')}}" data-url="{{ route('admin.books.index') }}"  id="addForm">
                     @csrf
                     @method('post')
                     <div class="modal-body">
@@ -172,5 +172,5 @@
 
 @push('js')
     {{ $dataTable->scripts() }}
-    <script src="{{ asset('adminStyle/customJs/users-actions.js')}}"></script>
+    <script src="{{ asset('adminStyle/customJs/books-actions.js')}}"></script>
 @endpush

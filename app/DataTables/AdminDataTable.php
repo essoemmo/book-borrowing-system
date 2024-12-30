@@ -6,6 +6,7 @@ use App\Models\Admin;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
@@ -72,12 +73,41 @@ class AdminDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('admin-table')
+            ->setTableId('admin-main-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            //->dom('Bfrtip')
+            ->dom('Bfrtip')
             ->orderBy(1)
-            ->selectStyleSingle();
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make([
+                    'extend' => 'pdfHtml5',
+                    'text' => 'Export PDF', // Custom button text
+                    'title' => 'Custom PDF Title',
+                    'className' => 'dt-button btn btn-primary text-nowrap',
+                    'customize' => 'function (doc) {
+                    // Modify the title style
+                    doc.styles.title = {
+                        color: "red",
+                        fontSize: "20",
+                        alignment: "center"
+                    };
+
+                    // Add custom content to the header
+                    doc.content.splice(0, 0, {
+                        text: "Custom Header for PDF Export",
+                        style: "header"
+                    });
+
+                    // Adjust table header style
+                    doc.styles.tableHeader = {
+                        bold: true,
+                        color: "blue",
+                        alignment: "center"
+                    };
+                }'
+                ]),
+            ]);
 
     }
 

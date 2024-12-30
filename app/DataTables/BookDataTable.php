@@ -22,8 +22,7 @@ class BookDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'book.action')
-            ->setRowId('id');
+            ->addIndexColumn();
     }
 
     /**
@@ -34,26 +33,44 @@ class BookDataTable extends DataTable
         return $model->newQuery();
     }
 
-    /**
-     * Optional method if you want to use the html builder.
-     */
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('book-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('admin-main-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make([
+                    'extend' => 'pdfHtml5',
+                    'text' => 'Export PDF', // Custom button text
+                    'title' => 'Custom PDF Title',
+                    'className' => 'dt-button btn btn-primary text-nowrap',
+                    'customize' => 'function (doc) {
+                    // Modify the title style
+                    doc.styles.title = {
+                        color: "red",
+                        fontSize: "20",
+                        alignment: "center"
+                    };
+
+                    // Add custom content to the header
+                    doc.content.splice(0, 0, {
+                        text: "Custom Header for PDF Export",
+                        style: "header"
+                    });
+
+                    // Adjust table header style
+                    doc.styles.tableHeader = {
+                        bold: true,
+                        color: "blue",
+                        alignment: "center"
+                    };
+                }'
+                ]),
+            ]);
     }
 
     /**
@@ -62,15 +79,10 @@ class BookDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('DT_RowIndex')->title('#')->addClass('text-center')->orderable(false)->searchable(false),
+            Column::make('title')->title(__('admin.title'))->addClass('text-center'),
+            Column::make('author')->title(__('admin.author'))->addClass('text-center'),
+            Column::make('isbn')->title(__('admin.isbn'))->addClass('text-center'),
         ];
     }
 
@@ -79,6 +91,6 @@ class BookDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Book_' . date('YmdHis');
+        return 'User_'.date('YmdHis');
     }
 }

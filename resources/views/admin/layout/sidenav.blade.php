@@ -67,13 +67,22 @@
                     </li>
                 @endif
 
-{{--                @if(Auth::guard('admin')->user()->hasPermission('cities-read'))--}}
-{{--                    <li class="menu-item {{ URL::route('admin.cities.index') === URL::current() ? 'active' : '' }}">--}}
-{{--                        <a href="{{route('admin.cities.index')}}" class="menu-link">--}}
-{{--                            <i class="menu-icon tf-icons mdi mdi-city mdi-36px"></i>--}}
-{{--                            <div data-i18n="@lang('admin.cities')">@lang('admin.cities')</div>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endif--}}
+                @if(Auth::guard('admin')->user()->hasPermission('books-read'))
+                    <li class="menu-item {{ URL::route('admin.books.index') === URL::current() ? 'active' : '' }}">
+                        <a href="{{route('admin.books.index')}}" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-book mdi-36px"></i>
+                            <div data-i18n="@lang('admin.books')">@lang('admin.books')</div>
+                        </a>
+                    </li>
+                @endif
+
+                @if(Auth::guard('admin')->user()->hasPermission('books-read'))
+                    <li class="menu-item {{ URL::route('admin.loans.index') === URL::current() ? 'active' : '' }}">
+                        <a href="{{route('admin.books.index')}}" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-book-account mdi-36px"></i>
+                            <div data-i18n="@lang('admin.loans')">@lang('admin.loans')</div>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </aside>
